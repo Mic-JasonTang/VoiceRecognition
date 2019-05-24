@@ -1,0 +1,38 @@
+doctype html
+html(lang='en')
+    // Core Head
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        meta(name='description', content='')
+        meta(name='author', content='')
+        title Test
+        // Product Sans
+        link(href='https://fonts.googleapis.com/css?family=Product+Sans:400,400i,700,700i' rel='stylesheet' type='text/css')
+        // Noto Fonts
+        link(href='http://fonts.googleapis.com/earlyaccess/notosanssc.css' rel='stylesheet' type='text/css')
+        // Stylesheet
+        link(href='/styles/materialize.min.css', rel='stylesheet' type="text/css")
+        // Custom Head
+        block head
+
+    // Core Style
+    style.
+        @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url('/fonts/icons/md-icon.woff2') format('woff2');
+        }
+    // Custom Style
+    block style
+
+    body
+        block content
+
+        // Core Javascript
+        script(src='/js/jquery-2.2.4.min.js')
+        script(src='/js/materialize.min.js')
+        script(src='/js/FileSaver.js')
+        // Custom Javascript
+        block javascript
