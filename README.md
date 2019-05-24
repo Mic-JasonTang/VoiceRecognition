@@ -19,6 +19,14 @@ npm install
 ``` shell
 node app.js
 ```
+### 语音测试
+  点击`语音测试`按钮，自动开始录制2s内的声音，录制结束后播放声音和显示预测结果。
+
+  [![测试结果]](https://github.com/Mic-JasonTang/VoiceRecognition/tree/master/public/images/turnon.png)]
+  [![测试结果]](https://github.com/Mic-JasonTang/VoiceRecognition/tree/master/public/images/turnoff.png)]
+
+### 创建数据集
+  点击`创建数据`按钮，自动开始录制2s内的声音，录制结束后播放声音并自动下载保存为`voice.txt`文件。
 
 ## 开发
 
