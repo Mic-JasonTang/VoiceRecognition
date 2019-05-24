@@ -3,7 +3,7 @@
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
-本项目基于 `Express` 和 `TensorFlow.js`所开发得语音识别案例。在启动程序后，可以通过 `http://127.0.0.1:3000` 进行访问。
+本项目基于 `Express` 和 `TensorFlow.js`所开发的语音识别案例。在启动程序后，可以通过 `http://127.0.0.1:3000` 进行访问。
 
 ## 第一次使用
 
@@ -59,6 +59,7 @@ root
 ### 模型
 
 模型为web_model格式，存放在在 `public` 目录下为 `model`（名字可自定义）的目录。
+![模型结构](https://github.com/Mic-JasonTang/QuickDraw/blob/master/public/images/voice_recognition_model.png?raw=true)
 
 ### 路由
 
