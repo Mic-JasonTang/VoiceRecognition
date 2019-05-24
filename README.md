@@ -1,14 +1,15 @@
-# Express Bone
+# Voice Recognition
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
-本项目为 `Express` 的骨架程序，开发者可以基于本项目进行 `TensorFlow.js` 方向的案例开发。在启动骨架程序后，可以通过 `http://127.0.0.1:3000` 进行访问。
+本项目基于 `Express` 和 `TensorFlow.js`所开发得语音识别案例。在启动程序后，可以通过 `http://127.0.0.1:3000` 进行访问。
 
 ## 第一次使用
 
 ### 安装环境依赖
-
+  
+  进入到VoiceRecognition目录，执行下面代码：
 ``` shell
 npm install
 ```
@@ -30,6 +31,7 @@ root
       -- images
       -- js
       -- styles
+      -- model
     -- routes
         -- views
         -- index.js
@@ -46,9 +48,9 @@ root
 
 本项目的资源文件存放在 `public` 目录下。
 
-### 安装模型
+### 模型
 
-开发者可以在 `public` 目录下新建名为 `model`（名字可自定义）的目录，并将 `TensorFlow.js` 的模型文件放置在该目录下。
+模型为web_model格式，存放在在 `public` 目录下为 `model`（名字可自定义）的目录。
 
 ### 路由
 
@@ -56,20 +58,6 @@ root
 
 ## 部署
 
-### 项目依赖
-
-请将 `Web` 项目开发过程中所使用到的 `node.js` 包添加到 `package.json` 文件当中，格式如下：
-
-``` json
-{
-  "dependencies": {
-    "express": "^4.16.3",
-    "pug": "^2.0.0-rc.2",
-    "新增的包":"新增的包的版本号"
-  }
-}
-```
-
 ### 服务端口
 
-请使用 `3000` 作为 `Web` 对外开放服务端口，如有特殊需求，请邮件至 [innocamp@blackwalnut.tech](mailto:innocamp@blackwalnut.tech)
+默认使用 `3000` 作为 `Web` 对外开放服务端口
