@@ -59,7 +59,7 @@ root
 ### 模型
 
 模型为web_model格式，存放在在 `public` 目录下为 `model`（名字可自定义）的目录。
-![模型结构](https://github.com/Mic-JasonTang/QuickDraw/blob/master/public/images/voice_recognition_model.png?raw=true)
+![模型结构](https://github.com/Mic-JasonTang/VoiceRecognition/blob/master/public/images/voice_recognition_model.png?raw=true)
 
 ### 路由
 
