@@ -46,7 +46,39 @@ function preprocess(data) {
         return batched;
     })
 }
+// var drawMeter = function (cnt, fileContentArray, analyser, make_data_flag) {
+//                         var array = new Uint8Array(analyser.frequencyBinCount);
+//                         analyser.getByteFrequencyData(array);
+//                         if (make_data_flag) fileContentArray.push(array.toString() + '\n');
+//                         else fileContentArray.push(array);
+//                         cnt++;
+//                         if (cnt < 100) {
+//                             requestAnimationFrame(drawMeter);
+//                         } else if (make_data_flag) {
+//                             var file = new File(fileContentArray, "voice.txt", {
+//                                 type: "text/plain;charset=utf-8"
+//                             });
+//                             saveAs(file);
+//                         } else {
+//                             const data = preprocess(fileContentArray);
+//                             console.log(data);
+//                             const pred = model.predict(data).dataSync()
+//                             console.log(pred);
+//                             var display = '您说的可能是: '
 
+//                             for(var i = 0; i < pred.length; i++){
+//                                 if(pred[i] > 0.5){
+//                                     display += labels[i]
+//                                 }
+//                             }
+
+//                             if(display == '您说的可能是: '){
+//                                 display = '我也猜不出您说的是什么'
+//                             }
+//                             console.log(display);
+//                             $('#result').html(display + "<br> 概率:" + pred);
+//                         }    
+//                     };
 function main(){
 	$('#result').html("点击录音测试开始测试声音，点击创建数据开始创造数据集(并自动下载为txt格式)");
     $('#record_btn').mousedown(function () {
@@ -57,10 +89,8 @@ function main(){
             window.rec.getBuffer(function (buffer) {
             	// console.log("done");
                 // $('#result').html('录制到声音长度为： ' + buffer.length + ' 个 buffer 大小<br>每个 buffer 大小为： ' + buffer[0].length)
-                // // 替换 ↓
                 // var array = new Uint8Array(buffer);
                 // $('#result').html('处理后的声音长度为： ' + array.length)
-                // // 替换 ↑
 
                 // 将测试输出的部分变更为音频解码和音频播放。
                 // 程序先对之前处理的 WAV PCM 音频数据进行解码，然后创建音频流 BufferSource，将解码后的音频数据填充进之后把音频流与播放接口进行连接，从而播放声音。
@@ -69,11 +99,9 @@ function main(){
                     var audioBufferSouceNode = audioContext.createBufferSource();
 
                     // 对音频进行频谱转换，只需要在音频流-播放接口之间插入 Analyser 分析器即可。当然，如果不需要播放录音只做处理，可以将 Analyser 分析器和播放接口之间的链接切断。
-                    // 替换 ↓
                     var analyser = audioContext.createAnalyser();
                     audioBufferSouceNode.connect(analyser);
                     analyser.connect(audioContext.destination);// 注释掉后不会播放声音，但处理正常进行。
-                     // 替换 ↑
 
                     // audioBufferSouceNode.connect(audioContext.destination);
                     audioBufferSouceNode.buffer = decodedData;
@@ -81,9 +109,9 @@ function main(){
 
                     // 经过测试，把 1s 的数据用 100 个时间片可以完全容纳。
                     //使用 Analyser 分析器对音频数据进行分析，随着音频流数据的传递，analyser.frequencyBinCount 这个函数所返回的值也不同，因此使用 Web API 中的函数 requestAnimationFrame 对不同时刻播放的音频数据频谱化。
-                    // 添加 ↓
                     var cnt = 0;
                     var fileContentArray = [];
+
                     var drawMeter = function () {
                         var array = new Uint8Array(analyser.frequencyBinCount);
                         analyser.getByteFrequencyData(array);
@@ -121,9 +149,6 @@ function main(){
                         }
                     }
                     requestAnimationFrame(drawMeter);
-                    // 添加 ↑
-
-                   
                 });
                 window.rec.clear();
             });
@@ -134,42 +159,25 @@ function main(){
         window.rec.record();
         setTimeout(function () {
             window.rec.stop();
-            // console.log("stop");
             window.rec.getBuffer(function (buffer) {
-                // console.log("done");
-                // $('#result').html('录制到声音长度为： ' + buffer.length + ' 个 buffer 大小<br>每个 buffer 大小为： ' + buffer[0].length)
-                // // 替换 ↓
-                // var array = new Uint8Array(buffer);
-                // $('#result').html('处理后的声音长度为： ' + array.length)
-                // // 替换 ↑
-
-                // 将测试输出的部分变更为音频解码和音频播放。
-                // 程序先对之前处理的 WAV PCM 音频数据进行解码，然后创建音频流 BufferSource，将解码后的音频数据填充进之后把音频流与播放接口进行连接，从而播放声音。
+                
                 audioContext.decodeAudioData(buffer).
                 then(function (decodedData) {
                     var audioBufferSouceNode = audioContext.createBufferSource();
 
-                    // 对音频进行频谱转换，只需要在音频流-播放接口之间插入 Analyser 分析器即可。当然，如果不需要播放录音只做处理，可以将 Analyser 分析器和播放接口之间的链接切断。
-                    // 替换 ↓
                     var analyser = audioContext.createAnalyser();
                     audioBufferSouceNode.connect(analyser);
                     analyser.connect(audioContext.destination);// 注释掉后不会播放声音，但处理正常进行。
-                     // 替换 ↑
 
-                    // audioBufferSouceNode.connect(audioContext.destination);
                     audioBufferSouceNode.buffer = decodedData;
                     audioBufferSouceNode.start(0);
 
-                    // 经过测试，把 1s 的数据用 100 个时间片可以完全容纳。
-                    //使用 Analyser 分析器对音频数据进行分析，随着音频流数据的传递，analyser.frequencyBinCount 这个函数所返回的值也不同，因此使用 Web API 中的函数 requestAnimationFrame 对不同时刻播放的音频数据频谱化。
-                    // 添加 ↓
                     var cnt = 0;
                     var fileContentArray = [];
                     var drawMeter = function () {
                         var array = new Uint8Array(analyser.frequencyBinCount);
                         analyser.getByteFrequencyData(array);
-                        // fileContentArray.push(array.toString() + '\n');
-                        fileContentArray.push(array);
+                        fileContentArray.push(array.toString() + '\n');
                         cnt++;
                         if (cnt < 100) {
                             requestAnimationFrame(drawMeter);
@@ -181,9 +189,6 @@ function main(){
                         }
                     }
                     requestAnimationFrame(drawMeter);
-                    // 添加 ↑
-
-                   
                 });
                 window.rec.clear();
             });
